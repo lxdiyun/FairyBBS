@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['']
 INSTALLED_APPS = (
     'account',
     'forum',
-    'pagination',
+    'pagination_bootstrap',
     'panel',
     'django.contrib.humanize',
     'django.contrib.admin',
@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,7 +52,7 @@ MIDDLEWARE_CLASSES = (
     'fairy.middleware.SiteOff',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'pagination.middleware.PaginationMiddleware',
+    'pagination_bootstrap.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'fairy.urls'

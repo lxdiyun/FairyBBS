@@ -15,5 +15,9 @@ class topic_admin(admin.ModelAdmin):
     search_fields = ['title', 'user__username']
     inlines = [post_inline]
 
+
+class node_admin(admin.ModelAdmin):
+    list_display = ('title','description')
+
 admin.site.register(topic, topic_admin)
-admin.site.register(node)
+admin.site.register(node, node_admin)

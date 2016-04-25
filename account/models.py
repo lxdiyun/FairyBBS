@@ -37,12 +37,12 @@ class profile(models.Model):
         da = ''  # default avatar
         dic = {}
         if self.use_gravatar:
-            mail = self.user.email.lower()
+            mail = self.user.email.lower().encode('utf-8')
             gravatar_url = "http://www.gravatar.com/avatar/"
             base_url = gravatar_url + hashlib.md5(mail).hexdigest() + "?"
-            dic['small'] = base_url + urllib.urlencode({'d': da, 's': '40'})
-            dic['middle'] = base_url + urllib.urlencode({'d': da, 's': '48'})
-            dic['large'] = base_url + urllib.urlencode({'d': da, 's': '80'})
+            dic['small'] = base_url + urllib.parse.urlencode({'d': da, 's': '40'})
+            dic['middle'] = base_url + urllib.parse.urlencode({'d': da, 's': '48'})
+            dic['large'] = base_url + urllib.parse.urlencode({'d': da, 's': '80'})
             return dic
         elif self.avatar_url:
             dic['small'] = self.avatar_url

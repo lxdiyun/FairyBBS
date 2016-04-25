@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-05 17:14+0800\n"
+"POT-Creation-Date: 2016-04-25 11:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,8 +26,7 @@ msgstr "后台"
 msgid "user management"
 msgstr "用户管理"
 
-#: panel/templates/panel/base.html:58
-#: panel/templates/panel/user-manage.html:14
+#: panel/templates/panel/base.html:58 panel/templates/panel/user-manage.html:14
 msgid "all users"
 msgstr "所有用户"
 

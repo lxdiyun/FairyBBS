@@ -1,0 +1,3 @@
+[submodule "django-pagination-bootstrap"]
+	path = django-pagination-bootstrap
+	url = https://github.com/staticdev/django-pagination-bootstrap.git
