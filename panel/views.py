@@ -3,7 +3,7 @@ from django.template import RequestContext
 from forum.models import node, topic
 from django.shortcuts import render_to_response
 from django.utils.translation import ugettext as _
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import user_passes_test
@@ -12,7 +12,7 @@ from django.db.models import Q
 # Create your views here.
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def index(request):
     return render_to_response('panel/index.html', {'title': _('home')})
 
@@ -22,7 +22,7 @@ def user_manage(request):
     return render_to_response('panel/user-manage.html', {'title': _('user management')})
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def user_table_data(request):
     data = {}
     data['aaData'] = []
@@ -32,7 +32,7 @@ def user_table_data(request):
     return HttpResponse(json.dumps(data))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def user_table_ss(request):
     fields = ['id','username', 'email']
     order_dir = request.GET.get('sSortDir_0')
@@ -70,7 +70,7 @@ def user_table_ss(request):
 
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def user_edit(request,uid):
     u = User.objects.get(id=uid)
     if request.method == 'GET':
@@ -103,12 +103,12 @@ def user_edit(request,uid):
         return HttpResponseRedirect(reverse('panel:user_edit', args=[uid]))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def node_manage(request):
     return render_to_response('panel/node-manage.html', {'title': _('node management')})
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def node_table_ss(request):
     fields = ['id','title']
     order_dir = request.GET.get('sSortDir_0')
@@ -145,7 +145,7 @@ def node_table_ss(request):
     return HttpResponse(json.dumps(data))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def node_edit(request,node_id):
     n = node.objects.get(id=node_id)
     if request.method == 'GET':
@@ -161,7 +161,7 @@ def node_edit(request,node_id):
         return HttpResponseRedirect(reverse('panel:node_edit', args=[n.id]))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def node_create(request):
     if request.method == 'GET':
         return render_to_response('panel/node-create.html', {'title': _('create node')},
@@ -177,12 +177,12 @@ def node_create(request):
         return HttpResponseRedirect(reverse('panel:node_manage'))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def topic_manage(request):
     return render_to_response('panel/topic-manage.html', {'title': _('topic management')})
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 
 
 def topic_edit(request,topic_id):
@@ -205,7 +205,7 @@ def topic_edit(request,topic_id):
         return HttpResponseRedirect(reverse('panel:topic_edit', args=[t.id]))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def topic_table_ss(request):
     fields = ['id', 'title', 'user__username', 'node__title']
     order_dir = request.GET.get('sSortDir_0')
@@ -242,7 +242,7 @@ def topic_table_ss(request):
     return HttpResponse(json.dumps(data))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def node_title_ajax(request):
     key = request.GET.get('query')
     condition = Q(title__contains=key)
@@ -254,7 +254,7 @@ def node_title_ajax(request):
     return HttpResponse(json.dumps(data))
 
 
-@user_passes_test(lambda u: u.is_superuser, login_url=reverse('signin'))
+@user_passes_test(lambda u: u.is_superuser, login_url=reverse_lazy('signin'))
 def topic_bulk_delete(request):
     ids = request.GET['ids']
     ids = ids.split(',')
