@@ -3,7 +3,7 @@ from account.models import profile
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.db.models import Q

@@ -22,8 +22,6 @@ SECRET_KEY = 'SECRET_KEY!!!!!!!!!!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = ['']
 
 
@@ -97,12 +95,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'template'),
-    os.path.join(BASE_DIR, 'template/common'),
-    os.path.join(BASE_DIR, 'template/widget'),
-    )
-
 MAX_UPLOAD_SIZE = "524288"
 
 EMAIL_USE_TLS = True
@@ -115,3 +107,28 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'template'),
+            os.path.join(BASE_DIR, 'template/common'),
+            os.path.join(BASE_DIR, 'template/widget'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
