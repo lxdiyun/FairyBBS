@@ -18,11 +18,14 @@ class topic(models.Model):
     last_replied = models.DateTimeField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
     order = models.IntegerField(default=10)
-    
+
     class Meta():
-        ordering = ['order' ,'-time_created']
+        ordering = ['order', '-time_created']
 
     def __unicode__(self):
+        return self.title
+
+    def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
@@ -72,6 +75,9 @@ class node(models.Model):
     def __unicode__(self):
         return self.title
 
+    def __str__(self):
+        return self.title
+
 
 class post(models.Model):
     user = models.ForeignKey(User, related_name='posts')
@@ -85,6 +91,9 @@ class post(models.Model):
         ordering = ['time_created']
 
     def __unicode__(self):
+        return str(self.id) + self.topic.title
+
+    def __str__(self):
         return str(self.id) + self.topic.title
 
     def save(self, *args, **kwargs):
@@ -148,6 +157,9 @@ class appendix(models.Model):
     content_rendered = models.TextField()
 
     def __unicode__(self):
+        return self.topic.title + '-Appendix'
+
+    def __str__(self):
         return self.topic.title + '-Appendix'
 
     def save(self, *args, **kwargs):
