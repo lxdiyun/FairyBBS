@@ -1,5 +1,9 @@
 #Updates
 
+##20160503
+Port to Python 3 and Django 1.9
+
+## orginal
 1. I18N, L10N support 
 2. a simple admin interface
 3. a more reusable structure

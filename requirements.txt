@@ -1,4 +1,4 @@
+Django==1.9.5
 Markdown==2.4
+Pillow==2.4.0
 Pygments==1.6
-django-pagination==1.0.7
-pillow==2.4.0
